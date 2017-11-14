@@ -9,24 +9,30 @@
             robotArm.speed = 2000;
             
             // Het level inladen
-            robotArm.loadLevel("exercise 9");
+            robotArm.randomLevel( 1, 8);
             
             // Jou instructies volgen hier
-            for(k=0; k<=3; k++){
-                    for(var j=0; j<=k; j++){
-                        robotArm.grab(); 
-                        for(var i=0; i<=5; i++){
-                            robotArm.moveRight(); 
-                        }
-                            robotArm.drop();
-                        for(var i=0; i<=5; i++){
-                            robotArm.moveLeft();
-                        }
-                    }
-                robotArm.moveRight();
+            var i=1;
+            
+            robotArm.grab();
+            
+            while(robotArm.scan() !=null){
+                for(var j=0; j<i; j++){
+                    robotArm.moveRight();
+                }
+                
+                robotArm.drop();
+                for(var k=0; k<i; k++){
+                    robotArm.moveLeft();
+                }
+                i++;
+                
+                robotArm.grab();
             }
             // De door jou opgegeven instructies uitvoeren
             robotArm.run();
         </script>
     </body>
 </html>
+
+

@@ -9,21 +9,25 @@
             robotArm.speed = 2000;
             
             // Het level inladen
-            robotArm.loadLevel("exercise 9");
+            robotArm.loadLevel("exercise 11");
             
             // Jou instructies volgen hier
-            for(k=0; k<=3; k++){
-                    for(var j=0; j<=k; j++){
-                        robotArm.grab(); 
-                        for(var i=0; i<=5; i++){
-                            robotArm.moveRight(); 
-                        }
-                            robotArm.drop();
-                        for(var i=0; i<=5; i++){
-                            robotArm.moveLeft();
-                        }
-                    }
+            for(var i=0; i<9; i++){
                 robotArm.moveRight();
+            }
+            
+            for(var i=0; i<=8; i++){
+                robotArm.grab();
+                
+                if(robotArm.scan() == 'white') {
+                    robotArm.moveRight();
+                    robotArm.drop();
+                    robotArm.moveLeft();
+                } else {
+                    robotArm.drop();
+                }
+                
+                robotArm.moveLeft();
             }
             // De door jou opgegeven instructies uitvoeren
             robotArm.run();
